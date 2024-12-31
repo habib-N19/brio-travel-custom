@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { cn } from 'src/utilities/cn'
 import React, { Fragment } from 'react'
 
@@ -8,6 +9,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { BookingFormBlock } from './BookingFormBlock/BookingFormBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -15,6 +17,7 @@ const blockComponents = {
   cta: CallToActionBlock,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
+  bookingForm: BookingFormBlock,
 }
 
 export const RenderBlocks: React.FC<{
