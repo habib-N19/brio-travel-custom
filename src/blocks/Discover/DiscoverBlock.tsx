@@ -17,8 +17,8 @@ export const DiscoverBlock: React.FC<any> = ({ title, content, image, ctaText, c
         </div>
         <div className="md:w-1/2 mt-8 md:mt-0">
           <Image
-            src={image.url}
-            alt={image.alt || 'Discover image'}
+            src={image?.url || null}
+            alt={image?.alt || 'Discover image'}
             width={600}
             height={400}
             objectFit="cover"

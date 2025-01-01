@@ -18,18 +18,18 @@ export const TestimonialsBlock: React.FC<any> = ({ title, testimonials }) => {
     <div className="container my-16">
       <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
       <div className="relative bg-gray-100 p-8 rounded-lg">
-        <blockquote className="text-xl italic mb-4">{testimonials[currentIndex].quote}</blockquote>
+        <blockquote className="text-xl italic mb-4">{testimonials[currentIndex]?.quote}</blockquote>
         <div className="flex items-center">
-          {testimonials[currentIndex].image && (
+          {testimonials[currentIndex]?.image && (
             <Image
-              src={testimonials[currentIndex].image.url}
-              alt={testimonials[currentIndex].author}
+              src={testimonials[currentIndex]?.image?.url || null}
+              alt={testimonials[currentIndex]?.author}
               width={60}
               height={60}
               className="rounded-full mr-4"
             />
           )}
-          <p className="font-bold">{testimonials[currentIndex].author}</p>
+          <p className="font-bold">{testimonials[currentIndex]?.author}</p>
         </div>
         <div className="absolute top-1/2 transform -translate-y-1/2 left-4">
           <Button onClick={prevTestimonial}>Previous</Button>

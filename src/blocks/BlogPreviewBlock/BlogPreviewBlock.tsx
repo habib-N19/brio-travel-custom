@@ -12,8 +12,8 @@ export const BlogPreviewBlock: React.FC<any> = ({ title, posts, ctaText, ctaLink
           <div key={index} className="border rounded-lg overflow-hidden">
             {post.featuredImage && (
               <Image
-                src={post.featuredImage.url}
-                alt={post.featuredImage.alt || post.title}
+                src={post?.featuredImage?.url}
+                alt={post?.featuredImage?.alt || post?.title}
                 width={400}
                 height={250}
                 objectFit="cover"
@@ -21,9 +21,9 @@ export const BlogPreviewBlock: React.FC<any> = ({ title, posts, ctaText, ctaLink
             )}
             <div className="p-4">
               <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-              <p className="mb-4">{post.excerpt}</p>
+              <p className="mb-4">{post?.excerpt}</p>
               <Button asChild variant="outline">
-                <a href={`/blog/${post.slug}`}>Read More</a>
+                <a href={`/blog/${post?.slug}`}>Read More</a>
               </Button>
             </div>
           </div>

@@ -12,8 +12,8 @@ export const IntroductionBlock: React.FC<any> = ({ title, content, image }) => {
         </div>
         <div className="md:w-1/2 mt-8 md:mt-0">
           <Image
-            src={image.url}
-            alt={image.alt || 'Introduction image'}
+            src={image?.url || null}
+            alt={image?.alt || 'Introduction image'}
             width={600}
             height={400}
             objectFit="cover"

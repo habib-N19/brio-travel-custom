@@ -21,6 +21,22 @@ import {
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
 import { BookingForm } from '@/blocks/BookingFormBlock/config'
+import { Introduction } from '@/blocks/IntroductionBlock/config'
+import { ServiceHighlights } from '@/blocks/ServiceHighlights/config'
+import { LuxuryShowcase } from '@/blocks/LuxuryShowcase/config'
+import { Testimonials } from '@/blocks/TestimonialsBlock/config'
+import { ExclusiveMembership } from '@/blocks/ExclusiveMembership/config'
+import { BentoGridGallery } from '@/blocks/BentoGallery/config'
+import { Discover } from '@/blocks/Discover/config'
+import { BlogPreview } from '@/blocks/BlogPreviewBlock/config'
+import { InteractiveMap } from '@/blocks/InteractiveMap/config'
+import { TravelTips } from '@/blocks/TravelTipsBlock/config'
+import { PersonalizedAdvisorProfiles } from '@/blocks/PersonalizedAdvisorProfiles/config'
+import { ExclusiveExperiences } from '@/blocks/ExclusiveExperiences/config'
+import { MembershipBenefits } from '@/blocks/MembershipBenefits/config'
+import { EmergencySupport } from '@/blocks/EmergencySupport/config'
+import { InteractiveTravelPlanner } from '@/blocks/InteractiveTravelPlanner/config'
+import { YachtShowcase } from '@/blocks/YachtShowcase/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -76,7 +92,30 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, BookingForm],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                BookingForm,
+                Introduction,
+                ServiceHighlights,
+                LuxuryShowcase,
+                Testimonials,
+                ExclusiveMembership,
+                BentoGridGallery,
+                Discover,
+                BlogPreview,
+                InteractiveMap,
+                TravelTips,
+                // PersonalizedAdvisorProfiles,
+                ExclusiveExperiences,
+                MembershipBenefits,
+                EmergencySupport,
+                InteractiveTravelPlanner,
+                YachtShowcase,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

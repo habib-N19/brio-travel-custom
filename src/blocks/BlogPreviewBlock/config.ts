@@ -14,7 +14,8 @@ export const BlogPreview: Block = {
       type: 'relationship',
       relationTo: 'posts',
       hasMany: true,
-      max: 3,
+      maxRows: 6,
+      minRows: 3,
       required: true,
     },
     {

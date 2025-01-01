@@ -9,7 +9,23 @@ import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
-import { BookingFormBlock } from './BookingFormBlock/BookingFormBlock'
+import { BookingFormBlock } from '@/blocks/BookingFormBlock/BookingFormBlock'
+import { IntroductionBlock } from '@/blocks/IntroductionBlock/IntroductionBlock'
+import { ServiceHighlightsBlock } from '@/blocks/ServiceHighlights/ServiceHighlightsBlock'
+import { LuxuryShowcaseBlock } from '@/blocks/LuxuryShowcase/LuxuryShowcaseBlock'
+import { TestimonialsBlock } from '@/blocks/TestimonialsBlock/TesstimonialsBlock'
+import { ExclusiveMembershipBlock } from '@/blocks/ExclusiveMembership/ExclusiveMembershipBlock'
+import { DiscoverBlock } from '@/blocks/Discover/DiscoverBlock'
+import { BlogPreviewBlock } from '@/blocks/BlogPreviewBlock/BlogPreviewBlock'
+import { InteractiveMapBlock } from '@/blocks/InteractiveMap/InteractiveMapBlock'
+import { TravelTipsBlock } from '@/blocks/TravelTipsBlock/TravelTipsBlock'
+import { PersonalizedAdvisorProfilesBlock } from '@/blocks/PersonalizedAdvisorProfiles/PersonalizedAdvisorProfilesBlock'
+import { ExclusiveExperiencesBlock } from '@/blocks/ExclusiveExperiences/ExclusiveExperiencesBlock'
+import { MembershipBenefitsBlock } from '@/blocks/MembershipBenefits/MembershipBenefitsBlock'
+import { EmergencySupportBlock } from '@/blocks/EmergencySupport/EmergencySupportBlock'
+import { InteractiveTravelPlannerBlock } from '@/blocks/InteractiveTravelPlanner/InteractiveTravelPlannerBlock'
+import { BentoGridGalleryBlock } from '@/blocks/BentoGallery/BentoGridGalleryBlock'
+import { YachtShowcaseBlock } from '@/blocks/YachtShowcase/YachtShowcaseBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -18,6 +34,24 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   bookingForm: BookingFormBlock,
+  introduction: IntroductionBlock,
+  serviceHighlights: ServiceHighlightsBlock,
+  luxuryShowcase: LuxuryShowcaseBlock,
+  testimonials: TestimonialsBlock,
+  exclusiveMembership: ExclusiveMembershipBlock,
+  discover: DiscoverBlock,
+  blogPreview: BlogPreviewBlock,
+  interactiveMap: InteractiveMapBlock,
+  // contact: ContactBlock,
+  // travelPackage: TravelPackageBlock,
+  travelTips: TravelTipsBlock,
+  personalizedAdvisorProfiles: PersonalizedAdvisorProfilesBlock,
+  exclusiveExperiences: ExclusiveExperiencesBlock,
+  membershipBenefits: MembershipBenefitsBlock,
+  emergencySupport: EmergencySupportBlock,
+  interactiveTravelPlanner: InteractiveTravelPlannerBlock,
+  bentoGridGallery: BentoGridGalleryBlock,
+  yachtShowcase: YachtShowcaseBlock,
 }
 
 export const RenderBlocks: React.FC<{
