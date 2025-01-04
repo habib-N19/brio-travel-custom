@@ -1,8 +1,8 @@
 import { Block } from 'payload'
 
-export const ExclusiveExperiences: Block = {
-  slug: 'exclusiveExperiences',
-  interfaceName: 'ExclusiveExperiencesBlock',
+export const TravelPackage: Block = {
+  slug: 'travelPackage',
+  interfaceName: 'TravelPackageBlock',
   fields: [
     {
       name: 'title',
@@ -14,9 +14,10 @@ export const ExclusiveExperiences: Block = {
       type: 'textarea',
     },
     {
-      name: 'experiences',
+      name: 'packages',
       type: 'array',
       minRows: 1,
+      maxRows: 4,
       fields: [
         {
           name: 'name',
@@ -29,14 +30,28 @@ export const ExclusiveExperiences: Block = {
           required: true,
         },
         {
+          name: 'price',
+          type: 'text',
+          required: true,
+        },
+        {
           name: 'image',
           type: 'upload',
           relationTo: 'media',
           required: true,
         },
         {
-          name: 'price',
-          type: 'text',
+          name: 'features',
+          type: 'array',
+          minRows: 2,
+          maxRows: 5,
+          fields: [
+            {
+              name: 'feature',
+              type: 'text',
+              required: true,
+            },
+          ],
         },
         {
           name: 'link',

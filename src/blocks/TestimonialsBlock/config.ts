@@ -10,9 +10,13 @@ export const Testimonials: Block = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+    },
+    {
       name: 'testimonials',
       type: 'array',
-      minRows: 3,
+      minRows: 1,
       fields: [
         {
           name: 'quote',
@@ -23,6 +27,10 @@ export const Testimonials: Block = {
           name: 'author',
           type: 'text',
           required: true,
+        },
+        {
+          name: 'position',
+          type: 'text',
         },
         {
           name: 'image',

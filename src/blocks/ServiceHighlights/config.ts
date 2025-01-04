@@ -1,14 +1,23 @@
 import { Block } from 'payload'
 
-export const ServiceHighlights: Block = {
-  slug: 'serviceHighlights',
-  interfaceName: 'ServiceHighlightsBlock',
+export const ServiceHighlightBlock: Block = {
+  slug: 'serviceHighlight',
+  interfaceName: 'ServiceHighlightBlock',
   fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+    },
     {
       name: 'services',
       type: 'array',
       minRows: 3,
-      maxRows: 3,
+      maxRows: 6,
       fields: [
         {
           name: 'title',

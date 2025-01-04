@@ -16,6 +16,7 @@ import { draftMode } from 'next/headers'
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { GoToTopButton } from '@/components/utils/GoToTopButton'
+import { NewsletterPopup } from '@/components/utils/NewsLetterPopup'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -38,6 +39,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Header />
           {children}
           <Footer />
+          {/* <NewsletterPopup /> */}
           <GoToTopButton />
         </Providers>
       </body>
@@ -50,6 +52,6 @@ export const metadata: Metadata = {
   openGraph: mergeOpenGraph(),
   twitter: {
     card: 'summary_large_image',
-    creator: '@payloadcms',
+    creator: '@brio.travel',
   },
 }

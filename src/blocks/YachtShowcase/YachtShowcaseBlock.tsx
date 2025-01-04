@@ -2,20 +2,21 @@
 
 import React, { useEffect, useRef } from 'react'
 import { motion, useInView, useAnimation } from 'framer-motion'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Media } from '@/components/Media'
+// import { Icon } from '@/components/ui/icon'
 
-interface YachtShowcaseProps {
-  title: string
-  description?: string
-  yachtFeatures: {
-    title: string
-    description: string
-  }[]
-}
+import type { YachtShowcaseBlock as YachtShowcaseBlockType } from '@/payload-types'
+// import Icon from '@/components/ui/icon'
 
-export const YachtShowcaseBlock: React.FC<YachtShowcaseProps> = ({
+export const YachtShowcaseBlock: React.FC<YachtShowcaseBlockType> = ({
   title,
   description,
   yachtFeatures,
+  yachtImage,
+  ctaText,
+  ctaLink,
 }) => {
   const controls = useAnimation()
   const ref = useRef(null)
@@ -29,13 +30,13 @@ export const YachtShowcaseBlock: React.FC<YachtShowcaseProps> = ({
 
   return (
     <section ref={ref} className="container mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-4 text-center">{title}</h2>
-      {description && (
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">{description}</p>
-      )}
-      <div className="flex flex-col lg:flex-row items-center justify-between">
+      <div className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        {description && <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>}
+      </div>
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
         <motion.div
-          className="w-full lg:w-1/2 mb-8 lg:mb-0"
+          className="w-full lg:w-1/2"
           initial="hidden"
           animate={controls}
           variants={{
@@ -43,49 +44,58 @@ export const YachtShowcaseBlock: React.FC<YachtShowcaseProps> = ({
             visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
           }}
         >
-          <svg viewBox="0 0 800 400" className="w-full h-auto">
-            {/* Simplified yacht SVG */}
-            <motion.path
-              d="M100 300 L700 300 L650 200 L150 200 Z"
-              fill="#3B82F6"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: 'easeInOut' }}
-            />
-            <motion.path
-              d="M300 200 L500 200 L450 100 L350 100 Z"
-              fill="#60A5FA"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: 'easeInOut', delay: 0.5 }}
-            />
-            <motion.circle
-              cx="400"
-              cy="150"
-              r="20"
-              fill="#93C5FD"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 2 }}
-            />
-          </svg>
+          <Media
+            resource={yachtImage}
+            alt="Luxury Yacht"
+            className="rounded-lg shadow-lg"
+            imgClassName="w-full h-full object-cover rounded-lg"
+          />
         </motion.div>
         <div className="w-full lg:w-1/2">
-          {yachtFeatures.map((feature, index) => (
+          {yachtFeatures?.map((feature, index) => (
             <motion.div
               key={index}
-              className="mb-6"
               initial="hidden"
               animate={controls}
               variants={{
                 hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.2 } },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.1 } },
               }}
             >
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    {/* <Icon name={feature.icon} className="w-6 h-6 mr-2 text-primary" /> */}
+                    {feature.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-600 dark:text-gray-300">{feature.description}</p>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
+          {ctaText && ctaLink && (
+            <motion.div
+              initial="hidden"
+              animate={controls}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.5,
+                    delay: yachtFeatures?.length ? yachtFeatures.length * 0.1 : 0,
+                  },
+                },
+              }}
+            >
+              <Button size="lg" asChild>
+                <a href={ctaLink}>{ctaText}</a>
+              </Button>
+            </motion.div>
+          )}
         </div>
       </div>
     </section>

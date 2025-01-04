@@ -1,31 +1,51 @@
-import React from 'react'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import RichText from '@/components/RichText'
+'use client'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const DiscoverBlock: React.FC<any> = ({ title, content, image, ctaText, ctaLink }) => {
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { Media } from '@/components/Media'
+import RichText from '@/components/RichText'
+import { motion } from 'framer-motion'
+
+import type { DiscoverBlock as DiscoverBlockType } from '@/payload-types'
+
+export const DiscoverBlock: React.FC<DiscoverBlockType> = ({
+  title,
+  content,
+  image,
+  ctaText,
+  ctaLink,
+}) => {
   return (
-    <div className="container my-16">
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 md:pr-8">
-          <h2 className="text-3xl font-bold mb-4">{title}</h2>
-          <RichText data={content} />
-          <Button asChild className="mt-6">
+    <section className="container mx-auto px-4 py-16">
+      <div className="flex flex-col lg:flex-row items-center gap-12">
+        <motion.div
+          className="lg:w-1/2"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h2>
+          <div className="prose dark:prose-invert mb-8">
+            <RichText content={content} />
+          </div>
+          <Button size="lg" asChild>
             <a href={ctaLink}>{ctaText}</a>
           </Button>
-        </div>
-        <div className="md:w-1/2 mt-8 md:mt-0">
-          <Image
-            src={image?.url || null}
-            alt={image?.alt || 'Discover image'}
-            width={600}
-            height={400}
-            objectFit="cover"
-            className="rounded-lg"
+        </motion.div>
+        <motion.div
+          className="lg:w-1/2"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Media
+            resource={image}
+            alt={title}
+            className="rounded-lg shadow-lg"
+            imgClassName="w-full h-full object-cover rounded-lg"
           />
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   )
 }

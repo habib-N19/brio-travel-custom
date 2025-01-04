@@ -1,18 +1,39 @@
-import React from 'react'
+'use client'
 
-export const TravelTipsBlock: React.FC<any> = ({ title, tips }) => {
+import React from 'react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+// import { Icon } from '@/components/ui/icon'
+import { motion } from 'framer-motion'
+
+import type { TravelTipsBlock as TravelTipsBlockType } from '@/payload-types'
+
+export const TravelTipsBlock: React.FC<TravelTipsBlockType> = ({ title, description, tips }) => {
   return (
-    <div className="container my-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+    <section className="container mx-auto px-4 py-16">
+      <div className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        {description && <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {tips.map((tip, index) => (
-          <div key={index} className="bg-gray-100 p-6 rounded-lg">
-            {/* <Icon name={tip.icon} className="w-12 h-12 mb-4 text-primary" /> */}
-            <h3 className="text-xl font-bold mb-2">{tip.tipTitle}</h3>
-            <p>{tip.tipContent}</p>
-          </div>
+        {tips?.map((tip, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <Card className="h-full bg-gray-50 dark:bg-gray-800">
+              <CardHeader>
+                {/* <Icon name={tip.icon} className="w-12 h-12 mb-4 text-primary" /> */}
+                <CardTitle className="text-xl font-bold">{tip.tipTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-600 dark:text-gray-300">{tip.tipContent}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   )
 }

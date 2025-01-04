@@ -10,10 +10,15 @@ export const BlogPreview: Block = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+    },
+    {
       name: 'posts',
       type: 'relationship',
       relationTo: 'posts',
       hasMany: true,
+
       maxRows: 6,
       minRows: 3,
       required: true,

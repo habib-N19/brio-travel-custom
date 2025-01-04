@@ -19,5 +19,11 @@ export const BookingForm: Block = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
   ],
 }

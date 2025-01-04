@@ -2,7 +2,7 @@ import { Block } from 'payload'
 
 export const BentoGridGallery: Block = {
   slug: 'bentoGridGallery',
-  interfaceName: 'BentoGridGallery',
+  interfaceName: 'BentoGridGalleryBlock',
   fields: [
     {
       name: 'title',

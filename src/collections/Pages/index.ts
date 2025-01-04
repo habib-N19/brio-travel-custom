@@ -113,7 +113,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ExclusiveExperiences,
                 MembershipBenefits,
                 EmergencySupport,
-                InteractiveTravelPlanner,
+                // InteractiveTravelPlanner,
                 YachtShowcase,
               ],
               required: true,

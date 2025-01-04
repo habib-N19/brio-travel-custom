@@ -2,7 +2,7 @@ import { Block } from 'payload'
 
 export const YachtShowcase: Block = {
   slug: 'yachtShowcase',
-  interfaceName: 'YachtShowcase',
+  interfaceName: 'YachtShowcaseBlock',
   fields: [
     {
       name: 'title',
@@ -29,7 +29,26 @@ export const YachtShowcase: Block = {
           type: 'textarea',
           required: true,
         },
+        {
+          name: 'icon',
+          type: 'text',
+          required: true,
+        },
       ],
+    },
+    {
+      name: 'yachtImage',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'ctaText',
+      type: 'text',
+    },
+    {
+      name: 'ctaLink',
+      type: 'text',
     },
   ],
 }

@@ -10,6 +10,10 @@ export const TravelTips: Block = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+    },
+    {
       name: 'tips',
       type: 'array',
       minRows: 3,

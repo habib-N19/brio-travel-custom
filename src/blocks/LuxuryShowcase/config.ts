@@ -10,6 +10,10 @@ export const LuxuryShowcase: Block = {
       required: true,
     },
     {
+      name: 'description',
+      type: 'textarea',
+    },
+    {
       name: 'items',
       type: 'array',
       minRows: 3,
@@ -29,6 +33,10 @@ export const LuxuryShowcase: Block = {
         {
           name: 'description',
           type: 'textarea',
+        },
+        {
+          name: 'link',
+          type: 'text',
         },
       ],
     },

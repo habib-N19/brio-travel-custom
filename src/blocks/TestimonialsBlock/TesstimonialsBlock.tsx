@@ -1,9 +1,19 @@
 'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
 
-export const TestimonialsBlock: React.FC<any> = ({ title, testimonials }) => {
+import React, { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
+import { Media } from '@/components/Media'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+
+import type { TestimonialsBlock as TestimonialsBlockType } from '@/payload-types'
+
+export const TestimonialsBlock: React.FC<TestimonialsBlockType> = ({
+  title,
+  description,
+  testimonials,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextTestimonial = () => {
@@ -15,29 +25,62 @@ export const TestimonialsBlock: React.FC<any> = ({ title, testimonials }) => {
   }
 
   return (
-    <div className="container my-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
-      <div className="relative bg-gray-100 p-8 rounded-lg">
-        <blockquote className="text-xl italic mb-4">{testimonials[currentIndex]?.quote}</blockquote>
-        <div className="flex items-center">
-          {testimonials[currentIndex]?.image && (
-            <Image
-              src={testimonials[currentIndex]?.image?.url || null}
-              alt={testimonials[currentIndex]?.author}
-              width={60}
-              height={60}
-              className="rounded-full mr-4"
-            />
-          )}
-          <p className="font-bold">{testimonials[currentIndex]?.author}</p>
-        </div>
-        <div className="absolute top-1/2 transform -translate-y-1/2 left-4">
-          <Button onClick={prevTestimonial}>Previous</Button>
-        </div>
-        <div className="absolute top-1/2 transform -translate-y-1/2 right-4">
-          <Button onClick={nextTestimonial}>Next</Button>
-        </div>
+    <section className="container mx-auto px-4 py-16">
+      <div className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        {description && <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>}
       </div>
-    </div>
+      <Card className="bg-gray-100 dark:bg-gray-800 overflow-hidden">
+        <CardContent className="p-8 relative">
+          <Quote className="absolute top-4 left-4 w-12 h-12 text-gray-300 dark:text-gray-700" />
+          <div className="relative z-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-center"
+              >
+                <blockquote className="text-2xl italic mb-8 text-gray-700 dark:text-gray-300">
+                  "{testimonials[currentIndex].quote}"
+                </blockquote>
+                <div className="flex items-center justify-center">
+                  {testimonials[currentIndex].image && (
+                    <Media
+                      resource={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].author}
+                      className="w-16 h-16 rounded-full mr-4"
+                      imgClassName="w-full h-full object-cover rounded-full"
+                    />
+                  )}
+                  <div className="text-left">
+                    <p className="font-bold text-lg text-gray-900 dark:text-white">
+                      {testimonials[currentIndex].author}
+                    </p>
+                    {testimonials[currentIndex].position && (
+                      <p className="text-gray-600 dark:text-gray-400">
+                        {testimonials[currentIndex].position}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+            <Button variant="ghost" size="icon" onClick={prevTestimonial}>
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+          </div>
+          <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+            <Button variant="ghost" size="icon" onClick={nextTestimonial}>
+              <ChevronRight className="h-6 w-6" />
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </section>
   )
 }

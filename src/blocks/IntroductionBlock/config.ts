@@ -1,6 +1,6 @@
 import { Block } from 'payload'
 
-export const Introduction: Block = {
+export const IntroductionBlock: Block = {
   slug: 'introduction',
   interfaceName: 'IntroductionBlock',
   fields: [
@@ -19,6 +19,14 @@ export const Introduction: Block = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'ctaText',
+      type: 'text',
+    },
+    {
+      name: 'ctaLink',
+      type: 'text',
     },
   ],
 }

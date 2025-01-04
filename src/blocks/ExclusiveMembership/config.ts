@@ -1,8 +1,8 @@
 import { Block } from 'payload'
 
-export const ExclusiveMembership: Block = {
-  slug: 'exclusiveMembership',
-  interfaceName: 'ExclusiveMembershipBlock',
+export const ExclusiveMemberBlock: Block = {
+  slug: 'exclusiveMember',
+  interfaceName: 'ExclusiveMemberBlock',
   fields: [
     {
       name: 'title',
@@ -35,6 +35,12 @@ export const ExclusiveMembership: Block = {
     {
       name: 'ctaLink',
       type: 'text',
+      required: true,
+    },
+    {
+      name: 'backgroundImage',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
     },
   ],

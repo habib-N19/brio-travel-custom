@@ -1,58 +1,57 @@
-import React from 'react'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
+'use client'
 
-interface BentoGridGalleryProps {
-  title: string
-  description?: string
-  images: {
-    image: {
-      url: string
-      alt: string
-    }
-    caption?: string
-    size: 'small' | 'medium' | 'large'
-  }[]
-}
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Media } from '@/components/Media'
+
+import { Card, CardContent } from '@/components/ui/card'
+
+import type { BentoGridGalleryBlock as BentoGridGalleryType } from '@/payload-types'
+import { cn } from '@/utilities/cn'
 
 const sizeClasses = {
   small: 'col-span-1 row-span-1',
   medium: 'col-span-1 row-span-2 md:col-span-2 md:row-span-1',
   large: 'col-span-2 row-span-2',
-}
+} as const
 
-export const BentoGridGalleryBlock: React.FC<BentoGridGalleryProps> = ({
+export const BentoGridGalleryBlock: React.FC<BentoGridGalleryType> = ({
   title,
   description,
   images,
 }) => {
   return (
     <section className="container mx-auto px-4 py-16">
-      <h2 className="text-3xl font-bold mb-4 text-center">{title}</h2>
-      {description && (
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">{description}</p>
-      )}
+      <div className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        {description && <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>}
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
         {images?.map((item, index) => (
           <motion.div
             key={index}
-            className={`${sizeClasses[item.size]} relative overflow-hidden rounded-lg`}
+            className={cn(sizeClasses[item.size], 'group relative overflow-hidden rounded-xl')}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Image
-              src={item?.image?.url}
-              alt={item?.image?.alt}
-              layout="fill"
-              objectFit="cover"
-              className="transition-transform duration-300 hover:scale-110"
-            />
-            {item.caption && (
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex items-end justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-center p-4">{item?.caption}</p>
-              </div>
-            )}
+            <Card className="w-full h-full overflow-hidden">
+              <CardContent className="p-0 h-full">
+                <Media
+                  resource={item.image}
+                  alt={item.caption || `Gallery image ${index + 1}`}
+                  className="w-full h-full"
+                  imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {item.caption && (
+                  <div className="absolute inset-0 bg-black/60 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-white text-center p-6 font-light tracking-wide">
+                      {item.caption}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </motion.div>
         ))}
       </div>

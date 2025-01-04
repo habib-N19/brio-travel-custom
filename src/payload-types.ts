@@ -138,14 +138,13 @@ export interface Page {
     | ExclusiveMembershipBlock
     | BentoGridGallery
     | DiscoverBlock
-    | BlogPreviewBlock
+    | BlogPreview
     | InteractiveMapBlock
     | TravelTipsBlock
     | ExclusiveExperiences
     | MembershipBenefits
     | EmergencySupport
-    | InteractiveTravelPlanner
-    | YachtShowcase
+    | YachtShowcaseBlock
   )[];
   meta?: {
     title?: string | null;
@@ -817,10 +816,11 @@ export interface DiscoverBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BlogPreviewBlock".
+ * via the `definition` "BlogPreview".
  */
-export interface BlogPreviewBlock {
+export interface BlogPreview {
   title: string;
+  description?: string | null;
   posts: (number | Post)[];
   ctaText: string;
   ctaLink: string;
@@ -871,12 +871,14 @@ export interface TravelTipsBlock {
  */
 export interface ExclusiveExperiences {
   title: string;
+  description?: string | null;
   experiences?:
     | {
         name: string;
         description: string;
         image: number | Media;
         price?: string | null;
+        link: string;
         id?: string | null;
       }[]
     | null;
@@ -934,41 +936,22 @@ export interface EmergencySupport {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "InteractiveTravelPlanner".
+ * via the `definition` "YachtShowcaseBlock".
  */
-export interface InteractiveTravelPlanner {
-  title: string;
-  description: string;
-  destinations?:
-    | {
-        name: string;
-        id?: string | null;
-      }[]
-    | null;
-  travelStyles?:
-    | {
-        name: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'interactiveTravelPlanner';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "YachtShowcase".
- */
-export interface YachtShowcase {
+export interface YachtShowcaseBlock {
   title: string;
   description?: string | null;
   yachtFeatures?:
     | {
         title: string;
         description: string;
+        icon: string;
         id?: string | null;
       }[]
     | null;
+  yachtImage: number | Media;
+  ctaText?: string | null;
+  ctaLink?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'yachtShowcase';
@@ -1170,14 +1153,13 @@ export interface PagesSelect<T extends boolean = true> {
         exclusiveMembership?: T | ExclusiveMembershipBlockSelect<T>;
         bentoGridGallery?: T | BentoGridGallerySelect<T>;
         discover?: T | DiscoverBlockSelect<T>;
-        blogPreview?: T | BlogPreviewBlockSelect<T>;
+        blogPreview?: T | BlogPreviewSelect<T>;
         interactiveMap?: T | InteractiveMapBlockSelect<T>;
         travelTips?: T | TravelTipsBlockSelect<T>;
         exclusiveExperiences?: T | ExclusiveExperiencesSelect<T>;
         membershipBenefits?: T | MembershipBenefitsSelect<T>;
         emergencySupport?: T | EmergencySupportSelect<T>;
-        interactiveTravelPlanner?: T | InteractiveTravelPlannerSelect<T>;
-        yachtShowcase?: T | YachtShowcaseSelect<T>;
+        yachtShowcase?: T | YachtShowcaseBlockSelect<T>;
       };
   meta?:
     | T
@@ -1400,10 +1382,11 @@ export interface DiscoverBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BlogPreviewBlock_select".
+ * via the `definition` "BlogPreview_select".
  */
-export interface BlogPreviewBlockSelect<T extends boolean = true> {
+export interface BlogPreviewSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   posts?: T;
   ctaText?: T;
   ctaLink?: T;
@@ -1451,6 +1434,7 @@ export interface TravelTipsBlockSelect<T extends boolean = true> {
  */
 export interface ExclusiveExperiencesSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   experiences?:
     | T
     | {
@@ -1458,6 +1442,7 @@ export interface ExclusiveExperiencesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
         price?: T;
+        link?: T;
         id?: T;
       };
   id?: T;
@@ -1497,31 +1482,9 @@ export interface EmergencySupportSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "InteractiveTravelPlanner_select".
+ * via the `definition` "YachtShowcaseBlock_select".
  */
-export interface InteractiveTravelPlannerSelect<T extends boolean = true> {
-  title?: T;
-  description?: T;
-  destinations?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
-  travelStyles?:
-    | T
-    | {
-        name?: T;
-        id?: T;
-      };
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "YachtShowcase_select".
- */
-export interface YachtShowcaseSelect<T extends boolean = true> {
+export interface YachtShowcaseBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   yachtFeatures?:
@@ -1529,8 +1492,12 @@ export interface YachtShowcaseSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        icon?: T;
         id?: T;
       };
+  yachtImage?: T;
+  ctaText?: T;
+  ctaLink?: T;
   id?: T;
   blockName?: T;
 }
