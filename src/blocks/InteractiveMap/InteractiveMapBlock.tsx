@@ -1,125 +1,78 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { useLoadScript, GoogleMap, MarkerF } from '@react-google-maps/api'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Media } from '@/components/Media'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import type { BookingFormBlock as BookingFormBlockType } from '@/payload-types'
+import type { InteractiveMapBlock as InteractiveMapBlockType } from '@/payload-types'
 
-export const BookingFormBlock: React.FC<BookingFormBlockType> = ({
+const mapContainerStyle = {
+  width: '100%',
+  height: '600px',
+}
+
+const center = { lat: 20, lng: 0 }
+
+export const InteractiveMapBlock: React.FC<InteractiveMapBlockType> = ({
   title,
   description,
-  successMessage,
-  backgroundImage,
+  destinations,
 }) => {
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [selectedDestination, setSelectedDestination] = useState<(typeof destinations)[0] | null>(
+    null,
+  )
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+  })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitted(true)
-  }
+  if (!isLoaded) return <div>Loading map...</div>
 
   return (
-    <section className="relative py-24">
-      <Media
-        resource={backgroundImage}
-        className="absolute inset-0 w-full h-full object-cover"
-        imgClassName="w-full h-full object-cover"
-        alt="Booking Form Background"
-      />
-      <div className="absolute inset-0 bg-black bg-opacity-60" />
-      <div className="relative z-10 container mx-auto px-4">
-        <AnimatePresence mode="wait">
-          {!isSubmitted ? (
+    <section className="container mx-auto px-4 py-16">
+      <div className="max-w-2xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{title}</h2>
+        {description && <p className="text-lg text-gray-600 dark:text-gray-300">{description}</p>}
+      </div>
+      <div className="relative">
+        <GoogleMap
+          mapContainerStyle={mapContainerStyle}
+          center={center}
+          zoom={2}
+          options={{
+            styles: [
+              {
+                featureType: 'all',
+                elementType: 'all',
+                stylers: [{ saturation: -100 }],
+              },
+            ],
+          }}
+        >
+          {destinations?.map((destination, index) => (
+            <MarkerF
+              key={index}
+              position={{ lat: destination.latitude, lng: destination.longitude }}
+              onClick={() => setSelectedDestination(destination)}
+            />
+          ))}
+        </GoogleMap>
+        <AnimatePresence>
+          {selectedDestination && (
             <motion.div
-              key="form"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="absolute bottom-8 left-8 right-8 md:left-auto md:right-8 md:w-96"
             >
-              <Card className="max-w-2xl mx-auto bg-white/10 backdrop-blur-md border-none text-white">
+              <Card>
                 <CardHeader>
-                  <CardTitle className="text-3xl font-bold text-center">{title}</CardTitle>
-                  <p className="text-center mt-2">{description}</p>
+                  <CardTitle>{selectedDestination.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <Input
-                      type="text"
-                      placeholder="Full Name"
-                      required
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Input
-                      type="email"
-                      placeholder="Email Address"
-                      required
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Input
-                      type="tel"
-                      placeholder="Phone Number"
-                      required
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Select>
-                      <SelectTrigger className="bg-white/20 text-white">
-                        <SelectValue placeholder="Preferred Destination" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="europe">Europe</SelectItem>
-                        <SelectItem value="asia">Asia</SelectItem>
-                        <SelectItem value="africa">Africa</SelectItem>
-                        <SelectItem value="americas">Americas</SelectItem>
-                        <SelectItem value="oceania">Oceania</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <Input
-                      type="date"
-                      placeholder="Preferred Date"
-                      required
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Input
-                      type="number"
-                      placeholder="Number of Travelers"
-                      required
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Textarea
-                      placeholder="Additional Comments or Requirements"
-                      rows={4}
-                      className="bg-white/20 text-white placeholder:text-gray-300"
-                    />
-                    <Button type="submit" size="lg" className="w-full">
-                      Submit Booking Request
-                    </Button>
-                  </form>
+                  <p>{selectedDestination.description}</p>
                 </CardContent>
               </Card>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="success"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="max-w-2xl mx-auto text-center text-white"
-            >
-              <h2 className="text-3xl font-bold mb-4">{successMessage}</h2>
-              <p className="text-xl">
-                We&apos;ll be in touch with you shortly to confirm your booking.
-              </p>
             </motion.div>
           )}
         </AnimatePresence>

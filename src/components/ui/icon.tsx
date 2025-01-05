@@ -1,4 +1,7 @@
+'use client'
+
 import React from 'react'
+import * as LucideIcons from 'lucide-react'
 
 interface IconProps {
   name: string
@@ -7,12 +10,13 @@ interface IconProps {
   className?: string
 }
 
-const Icon: React.FC<IconProps> = ({ name, size = 24, color = 'black', className }) => {
-  return (
-    <svg width={size} height={size} fill={color} aria-hidden="true" className={className}>
-      <use xlinkHref={`#${name}`} />
-    </svg>
-  )
-}
+export const Icon: React.FC<IconProps> = ({ name, className }) => {
+  const LucideIcon = LucideIcons[name as keyof typeof LucideIcons] as React.ElementType
 
-export default Icon
+  if (!LucideIcon) {
+    console.warn(`Icon "${name}" not found in Lucide icons`)
+    return null
+  }
+
+  return <LucideIcon className={className} />
+}

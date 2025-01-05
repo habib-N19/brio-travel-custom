@@ -11,7 +11,6 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { BookingFormBlock } from '@/blocks/BookingFormBlock/BookingFormBlock'
 import { IntroductionBlock } from '@/blocks/IntroductionBlock/IntroductionBlock'
-import { ServiceHighlightsBlock } from '@/blocks/ServiceHighlights/ServiceHighlightsBlock'
 import { LuxuryShowcaseBlock } from '@/blocks/LuxuryShowcase/LuxuryShowcaseBlock'
 import { TestimonialsBlock } from '@/blocks/TestimonialsBlock/TesstimonialsBlock'
 import { ExclusiveMembershipBlock } from '@/blocks/ExclusiveMembership/ExclusiveMembershipBlock'
@@ -26,6 +25,7 @@ import { EmergencySupportBlock } from '@/blocks/EmergencySupport/EmergencySuppor
 import { InteractiveTravelPlannerBlock } from '@/blocks/InteractiveTravelPlanner/InteractiveTravelPlannerBlock'
 import { BentoGridGalleryBlock } from '@/blocks/BentoGallery/BentoGridGalleryBlock'
 import { YachtShowcaseBlock } from '@/blocks/YachtShowcase/YachtShowcaseBlock'
+import { ServicesBlock } from './ServicesBlock/ServicesBlock'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -35,7 +35,7 @@ const blockComponents = {
   mediaBlock: MediaBlock,
   bookingForm: BookingFormBlock,
   introduction: IntroductionBlock,
-  serviceHighlights: ServiceHighlightsBlock,
+  services: ServicesBlock,
   luxuryShowcase: LuxuryShowcaseBlock,
   testimonials: TestimonialsBlock,
   exclusiveMembership: ExclusiveMembershipBlock,
@@ -72,7 +72,7 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className="my-16" key={index}>
+                <div className="" key={index}>
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
                   <Block {...block} disableInnerContainer />
                 </div>

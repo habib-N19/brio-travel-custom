@@ -17,11 +17,15 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = ({
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
+    if (testimonials && testimonials.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
+    }
   }
 
   const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
+    if (testimonials && testimonials.length > 0) {
+      setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
+    }
   }
 
   return (
@@ -43,29 +47,33 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = ({
                 transition={{ duration: 0.5 }}
                 className="text-center"
               >
-                <blockquote className="text-2xl italic mb-8 text-gray-700 dark:text-gray-300">
-                  "{testimonials[currentIndex].quote}"
-                </blockquote>
-                <div className="flex items-center justify-center">
-                  {testimonials[currentIndex].image && (
-                    <Media
-                      resource={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].author}
-                      className="w-16 h-16 rounded-full mr-4"
-                      imgClassName="w-full h-full object-cover rounded-full"
-                    />
-                  )}
-                  <div className="text-left">
-                    <p className="font-bold text-lg text-gray-900 dark:text-white">
-                      {testimonials[currentIndex].author}
-                    </p>
-                    {testimonials[currentIndex].position && (
-                      <p className="text-gray-600 dark:text-gray-400">
-                        {testimonials[currentIndex].position}
-                      </p>
-                    )}
-                  </div>
-                </div>
+                {testimonials && testimonials[currentIndex] && (
+                  <>
+                    <blockquote className="text-2xl italic mb-8 text-gray-700 dark:text-gray-300">
+                      &quot;{testimonials[currentIndex].quote}&quot;
+                    </blockquote>
+                    <div className="flex items-center justify-center">
+                      {testimonials[currentIndex].image && (
+                        <Media
+                          resource={testimonials[currentIndex].image}
+                          alt={testimonials[currentIndex].author}
+                          className="w-16 h-16 rounded-full mr-4"
+                          imgClassName="w-full h-full object-cover rounded-full"
+                        />
+                      )}
+                      <div className="text-left">
+                        <p className="font-bold text-lg text-gray-900 dark:text-white">
+                          {testimonials[currentIndex].author}
+                        </p>
+                        {testimonials[currentIndex].position && (
+                          <p className="text-gray-600 dark:text-gray-400">
+                            {testimonials[currentIndex].position}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>

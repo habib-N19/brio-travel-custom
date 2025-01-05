@@ -1,8 +1,8 @@
 import { Block } from 'payload'
 
-export const Discover: Block = {
-  slug: 'discover',
-  interfaceName: 'DiscoverBlock',
+export const RelatedExperiences: Block = {
+  slug: 'relatedExperiences',
+  interfaceName: 'RelatedExperiencesBlock',
   fields: [
     {
       name: 'title',
@@ -10,25 +10,25 @@ export const Discover: Block = {
       required: true,
     },
     {
-      name: 'content',
-      type: 'richText',
-      required: true,
+      name: 'description',
+      type: 'textarea',
     },
     {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
+      name: 'experiences',
+      type: 'relationship',
+      relationTo: 'posts',
+
+      hasMany: true,
+      max: 4,
       required: true,
     },
     {
       name: 'ctaText',
       type: 'text',
-      required: true,
     },
     {
       name: 'ctaLink',
       type: 'text',
-      required: true,
     },
   ],
 }

@@ -2,7 +2,7 @@ import { Block } from 'payload'
 
 export const EmergencySupport: Block = {
   slug: 'emergencySupport',
-  interfaceName: 'EmergencySupport',
+  interfaceName: 'EmergencySupportBlock',
   fields: [
     {
       name: 'title',

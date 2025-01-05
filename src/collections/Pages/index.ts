@@ -22,7 +22,6 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { BookingForm } from '@/blocks/BookingFormBlock/config'
 import { Introduction } from '@/blocks/IntroductionBlock/config'
-import { ServiceHighlights } from '@/blocks/ServiceHighlights/config'
 import { LuxuryShowcase } from '@/blocks/LuxuryShowcase/config'
 import { Testimonials } from '@/blocks/TestimonialsBlock/config'
 import { ExclusiveMembership } from '@/blocks/ExclusiveMembership/config'
@@ -37,6 +36,8 @@ import { MembershipBenefits } from '@/blocks/MembershipBenefits/config'
 import { EmergencySupport } from '@/blocks/EmergencySupport/config'
 import { InteractiveTravelPlanner } from '@/blocks/InteractiveTravelPlanner/config'
 import { YachtShowcase } from '@/blocks/YachtShowcase/config'
+import { IntroductionBlock } from '@/blocks/IntroductionBlock/IntroductionBlock'
+import { Services } from '@/blocks/ServicesBlock/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -100,7 +101,6 @@ export const Pages: CollectionConfig<'pages'> = {
                 FormBlock,
                 BookingForm,
                 Introduction,
-                ServiceHighlights,
                 LuxuryShowcase,
                 Testimonials,
                 ExclusiveMembership,
@@ -109,12 +109,15 @@ export const Pages: CollectionConfig<'pages'> = {
                 BlogPreview,
                 InteractiveMap,
                 TravelTips,
+                // Services,
+                Introduction,
                 // PersonalizedAdvisorProfiles,
                 ExclusiveExperiences,
                 MembershipBenefits,
                 EmergencySupport,
                 // InteractiveTravelPlanner,
                 YachtShowcase,
+                Services,
               ],
               required: true,
               admin: {

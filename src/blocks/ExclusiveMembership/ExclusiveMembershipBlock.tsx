@@ -7,9 +7,9 @@ import { Media } from '@/components/Media'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 
-import type { ExclusiveMemberBlock as ExclusiveMemberBlockType } from '@/payload-types'
+import type { ExclusiveMembershipBlock as ExclusiveMemberBlockType } from '@/payload-types'
 
-export const ExclusiveMemberBlock: React.FC<ExclusiveMemberBlockType> = ({
+export const ExclusiveMembershipBlock: React.FC<ExclusiveMemberBlockType> = ({
   title,
   description,
   benefits,
@@ -34,7 +34,7 @@ export const ExclusiveMemberBlock: React.FC<ExclusiveMemberBlockType> = ({
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              {benefits.map((benefit, index) => (
+              {benefits?.map((benefit, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}

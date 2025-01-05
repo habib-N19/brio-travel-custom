@@ -1,8 +1,8 @@
 import React from 'react'
 import { Phone, Mail } from 'lucide-react'
 import RichText from '@/components/RichText'
-
-export const EmergencySupportBlock: React.FC<any> = ({
+import type { EmergencySupportBlock as EmergencySupportBlockType } from '@/payload-types'
+export const EmergencySupportBlock: React.FC<EmergencySupportBlockType> = ({
   title,
   description,
   phoneNumber,
@@ -10,7 +10,7 @@ export const EmergencySupportBlock: React.FC<any> = ({
   additionalInfo,
 }) => {
   return (
-    <div className="container my-16 bg-red-100 p-8 rounded-lg">
+    <div className="container my-16  p-8 rounded-lg">
       <h2 className="text-3xl font-bold mb-4 text-center">{title}</h2>
       <p className="text-center mb-8">{description}</p>
       <div className="flex flex-col md:flex-row justify-center items-center gap-8 mb-8">
@@ -28,7 +28,7 @@ export const EmergencySupportBlock: React.FC<any> = ({
         </div>
       </div>
       {additionalInfo && (
-        <div className="bg-white p-6 rounded-lg">
+        <div className=" p-6 rounded-lg">
           <RichText data={additionalInfo} />
         </div>
       )}

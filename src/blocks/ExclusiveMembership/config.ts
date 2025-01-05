@@ -1,8 +1,8 @@
 import { Block } from 'payload'
 
-export const ExclusiveMemberBlock: Block = {
-  slug: 'exclusiveMember',
-  interfaceName: 'ExclusiveMemberBlock',
+export const ExclusiveMembership: Block = {
+  slug: 'exclusiveMembership',
+  interfaceName: 'ExclusiveMembershipBlock',
   fields: [
     {
       name: 'title',

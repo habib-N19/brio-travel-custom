@@ -132,19 +132,20 @@ export interface Page {
     | FormBlock
     | BookingFormBlock
     | IntroductionBlock
-    | ServiceHighlightsBlock
     | LuxuryShowcaseBlock
     | TestimonialsBlock
     | ExclusiveMembershipBlock
-    | BentoGridGallery
+    | BentoGridGalleryBlock
     | DiscoverBlock
-    | BlogPreview
+    | BlogPreviewBlock
     | InteractiveMapBlock
     | TravelTipsBlock
-    | ExclusiveExperiences
+    | IntroductionBlock
+    | ExclusiveExperiencesBlock
     | MembershipBenefits
-    | EmergencySupport
+    | EmergencySupportBlock
     | YachtShowcaseBlock
+    | ServicesBlock
   )[];
   meta?: {
     title?: string | null;
@@ -665,6 +666,7 @@ export interface BookingFormBlock {
   title: string;
   description: string;
   successMessage: string;
+  backgroundImage: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'bookingForm';
@@ -691,26 +693,11 @@ export interface IntroductionBlock {
     [k: string]: unknown;
   };
   image: number | Media;
+  ctaText?: string | null;
+  ctaLink?: string | null;
   id?: string | null;
   blockName?: string | null;
   blockType: 'introduction';
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ServiceHighlightsBlock".
- */
-export interface ServiceHighlightsBlock {
-  services?:
-    | {
-        title: string;
-        description: string;
-        icon: string;
-        id?: string | null;
-      }[]
-    | null;
-  id?: string | null;
-  blockName?: string | null;
-  blockType: 'serviceHighlights';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -718,11 +705,13 @@ export interface ServiceHighlightsBlock {
  */
 export interface LuxuryShowcaseBlock {
   title: string;
+  description?: string | null;
   items?:
     | {
         image: number | Media;
         title: string;
         description?: string | null;
+        link?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -736,10 +725,12 @@ export interface LuxuryShowcaseBlock {
  */
 export interface TestimonialsBlock {
   title: string;
+  description?: string | null;
   testimonials?:
     | {
         quote: string;
         author: string;
+        position?: string | null;
         image?: (number | null) | Media;
         id?: string | null;
       }[]
@@ -763,15 +754,16 @@ export interface ExclusiveMembershipBlock {
     | null;
   ctaText: string;
   ctaLink: string;
+  backgroundImage: number | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'exclusiveMembership';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BentoGridGallery".
+ * via the `definition` "BentoGridGalleryBlock".
  */
-export interface BentoGridGallery {
+export interface BentoGridGalleryBlock {
   title: string;
   description?: string | null;
   images?:
@@ -816,9 +808,9 @@ export interface DiscoverBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BlogPreview".
+ * via the `definition` "BlogPreviewBlock".
  */
-export interface BlogPreview {
+export interface BlogPreviewBlock {
   title: string;
   description?: string | null;
   posts: (number | Post)[];
@@ -834,6 +826,7 @@ export interface BlogPreview {
  */
 export interface InteractiveMapBlock {
   title: string;
+  description?: string | null;
   destinations?:
     | {
         name: string;
@@ -853,6 +846,7 @@ export interface InteractiveMapBlock {
  */
 export interface TravelTipsBlock {
   title: string;
+  description?: string | null;
   tips?:
     | {
         tipTitle: string;
@@ -867,9 +861,9 @@ export interface TravelTipsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExclusiveExperiences".
+ * via the `definition` "ExclusiveExperiencesBlock".
  */
-export interface ExclusiveExperiences {
+export interface ExclusiveExperiencesBlock {
   title: string;
   description?: string | null;
   experiences?:
@@ -908,9 +902,9 @@ export interface MembershipBenefits {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmergencySupport".
+ * via the `definition` "EmergencySupportBlock".
  */
-export interface EmergencySupport {
+export interface EmergencySupportBlock {
   title: string;
   description: string;
   phoneNumber: string;
@@ -955,6 +949,31 @@ export interface YachtShowcaseBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'yachtShowcase';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "servicesBlock".
+ */
+export interface ServicesBlock {
+  layout: 'imageLeft' | 'imageRight';
+  image: number | Media;
+  imageBackground: {
+    color: string;
+    opacity: number;
+  };
+  contentBackground: {
+    color: string;
+    opacity: number;
+  };
+  textColor: {
+    title: string;
+    subheading: string;
+  };
+  title: string;
+  subheading: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'services';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1147,19 +1166,19 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         bookingForm?: T | BookingFormBlockSelect<T>;
         introduction?: T | IntroductionBlockSelect<T>;
-        serviceHighlights?: T | ServiceHighlightsBlockSelect<T>;
         luxuryShowcase?: T | LuxuryShowcaseBlockSelect<T>;
         testimonials?: T | TestimonialsBlockSelect<T>;
         exclusiveMembership?: T | ExclusiveMembershipBlockSelect<T>;
-        bentoGridGallery?: T | BentoGridGallerySelect<T>;
+        bentoGridGallery?: T | BentoGridGalleryBlockSelect<T>;
         discover?: T | DiscoverBlockSelect<T>;
-        blogPreview?: T | BlogPreviewSelect<T>;
+        blogPreview?: T | BlogPreviewBlockSelect<T>;
         interactiveMap?: T | InteractiveMapBlockSelect<T>;
         travelTips?: T | TravelTipsBlockSelect<T>;
-        exclusiveExperiences?: T | ExclusiveExperiencesSelect<T>;
+        exclusiveExperiences?: T | ExclusiveExperiencesBlockSelect<T>;
         membershipBenefits?: T | MembershipBenefitsSelect<T>;
-        emergencySupport?: T | EmergencySupportSelect<T>;
+        emergencySupport?: T | EmergencySupportBlockSelect<T>;
         yachtShowcase?: T | YachtShowcaseBlockSelect<T>;
+        services?: T | ServicesBlockSelect<T>;
       };
   meta?:
     | T
@@ -1267,6 +1286,7 @@ export interface BookingFormBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   successMessage?: T;
+  backgroundImage?: T;
   id?: T;
   blockName?: T;
 }
@@ -1278,22 +1298,8 @@ export interface IntroductionBlockSelect<T extends boolean = true> {
   title?: T;
   content?: T;
   image?: T;
-  id?: T;
-  blockName?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ServiceHighlightsBlock_select".
- */
-export interface ServiceHighlightsBlockSelect<T extends boolean = true> {
-  services?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
+  ctaText?: T;
+  ctaLink?: T;
   id?: T;
   blockName?: T;
 }
@@ -1303,12 +1309,14 @@ export interface ServiceHighlightsBlockSelect<T extends boolean = true> {
  */
 export interface LuxuryShowcaseBlockSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   items?:
     | T
     | {
         image?: T;
         title?: T;
         description?: T;
+        link?: T;
         id?: T;
       };
   id?: T;
@@ -1320,11 +1328,13 @@ export interface LuxuryShowcaseBlockSelect<T extends boolean = true> {
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   testimonials?:
     | T
     | {
         quote?: T;
         author?: T;
+        position?: T;
         image?: T;
         id?: T;
       };
@@ -1346,14 +1356,15 @@ export interface ExclusiveMembershipBlockSelect<T extends boolean = true> {
       };
   ctaText?: T;
   ctaLink?: T;
+  backgroundImage?: T;
   id?: T;
   blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BentoGridGallery_select".
+ * via the `definition` "BentoGridGalleryBlock_select".
  */
-export interface BentoGridGallerySelect<T extends boolean = true> {
+export interface BentoGridGalleryBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   images?:
@@ -1382,9 +1393,9 @@ export interface DiscoverBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "BlogPreview_select".
+ * via the `definition` "BlogPreviewBlock_select".
  */
-export interface BlogPreviewSelect<T extends boolean = true> {
+export interface BlogPreviewBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   posts?: T;
@@ -1399,6 +1410,7 @@ export interface BlogPreviewSelect<T extends boolean = true> {
  */
 export interface InteractiveMapBlockSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   destinations?:
     | T
     | {
@@ -1417,6 +1429,7 @@ export interface InteractiveMapBlockSelect<T extends boolean = true> {
  */
 export interface TravelTipsBlockSelect<T extends boolean = true> {
   title?: T;
+  description?: T;
   tips?:
     | T
     | {
@@ -1430,9 +1443,9 @@ export interface TravelTipsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "ExclusiveExperiences_select".
+ * via the `definition` "ExclusiveExperiencesBlock_select".
  */
-export interface ExclusiveExperiencesSelect<T extends boolean = true> {
+export interface ExclusiveExperiencesBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   experiences?:
@@ -1469,9 +1482,9 @@ export interface MembershipBenefitsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "EmergencySupport_select".
+ * via the `definition` "EmergencySupportBlock_select".
  */
-export interface EmergencySupportSelect<T extends boolean = true> {
+export interface EmergencySupportBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   phoneNumber?: T;
@@ -1498,6 +1511,36 @@ export interface YachtShowcaseBlockSelect<T extends boolean = true> {
   yachtImage?: T;
   ctaText?: T;
   ctaLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "servicesBlock_select".
+ */
+export interface ServicesBlockSelect<T extends boolean = true> {
+  layout?: T;
+  image?: T;
+  imageBackground?:
+    | T
+    | {
+        color?: T;
+        opacity?: T;
+      };
+  contentBackground?:
+    | T
+    | {
+        color?: T;
+        opacity?: T;
+      };
+  textColor?:
+    | T
+    | {
+        title?: T;
+        subheading?: T;
+      };
+  title?: T;
+  subheading?: T;
   id?: T;
   blockName?: T;
 }
