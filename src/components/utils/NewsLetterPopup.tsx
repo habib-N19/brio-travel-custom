@@ -10,17 +10,26 @@ export const NewsletterPopup: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true)
-    }, 5000) // Show popup after 5 seconds
+    const hasSeenPopup = localStorage.getItem('hasSeenPopup')
+    if (!hasSeenPopup) {
+      const timer = setTimeout(() => {
+        setIsOpen(true)
+      }, 5000) // Show popup after 5 seconds
 
-    return () => clearTimeout(timer)
+      return () => clearTimeout(timer)
+    }
   }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Handle newsletter signup logic here
     console.log('Newsletter signup submitted')
+    localStorage.setItem('hasSeenPopup', 'true')
+    setIsOpen(false)
+  }
+
+  const handleClose = () => {
+    localStorage.setItem('hasSeenPopup', 'true')
     setIsOpen(false)
   }
 
@@ -40,7 +49,7 @@ export const NewsletterPopup: React.FC = () => {
             className="bg-white p-8 rounded-lg shadow-xl relative max-w-md w-full"
           >
             <button
-              onClick={() => setIsOpen(false)}
+              onClick={handleClose}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
             >
               <X />

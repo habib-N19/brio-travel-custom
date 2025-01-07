@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { RequiredDataFromCollectionSlug } from 'payload'
 
 export const home: RequiredDataFromCollectionSlug<'pages'> = {

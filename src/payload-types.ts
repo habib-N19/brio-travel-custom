@@ -677,7 +677,7 @@ export interface BookingFormBlock {
  */
 export interface IntroductionBlock {
   title: string;
-  content: {
+  richText?: {
     root: {
       type: string;
       children: {
@@ -691,7 +691,7 @@ export interface IntroductionBlock {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   image: number | Media;
   ctaText?: string | null;
   ctaLink?: string | null;
@@ -851,7 +851,7 @@ export interface TravelTipsBlock {
     | {
         tipTitle: string;
         tipContent: string;
-        icon: string;
+        image: number | Media;
         id?: string | null;
       }[]
     | null;
@@ -935,14 +935,6 @@ export interface EmergencySupportBlock {
 export interface YachtShowcaseBlock {
   title: string;
   description?: string | null;
-  yachtFeatures?:
-    | {
-        title: string;
-        description: string;
-        icon: string;
-        id?: string | null;
-      }[]
-    | null;
   yachtImage: number | Media;
   ctaText?: string | null;
   ctaLink?: string | null;
@@ -1296,7 +1288,7 @@ export interface BookingFormBlockSelect<T extends boolean = true> {
  */
 export interface IntroductionBlockSelect<T extends boolean = true> {
   title?: T;
-  content?: T;
+  richText?: T;
   image?: T;
   ctaText?: T;
   ctaLink?: T;
@@ -1435,7 +1427,7 @@ export interface TravelTipsBlockSelect<T extends boolean = true> {
     | {
         tipTitle?: T;
         tipContent?: T;
-        icon?: T;
+        image?: T;
         id?: T;
       };
   id?: T;
@@ -1500,14 +1492,6 @@ export interface EmergencySupportBlockSelect<T extends boolean = true> {
 export interface YachtShowcaseBlockSelect<T extends boolean = true> {
   title?: T;
   description?: T;
-  yachtFeatures?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        icon?: T;
-        id?: T;
-      };
   yachtImage?: T;
   ctaText?: T;
   ctaLink?: T;

@@ -6,8 +6,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { motion } from 'framer-motion'
 
 import type { TravelTipsBlock as TravelTipsBlockType } from '@/payload-types'
+import { Media } from '@/components/Media'
 
 export const TravelTipsBlock: React.FC<TravelTipsBlockType> = ({ title, description, tips }) => {
+  // const hasValidImage = image && typeof image === 'object' && 'url' in image
+
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="max-w-2xl mx-auto text-center mb-12">
@@ -27,8 +30,21 @@ export const TravelTipsBlock: React.FC<TravelTipsBlockType> = ({ title, descript
                 {/* <Icon name={tip.icon} className="w-12 h-12 mb-4 text-primary" /> */}
                 <CardTitle className="text-xl font-bold">{tip.tipTitle}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300">{tip.tipContent}</p>
+              <CardContent className="flex grid-cols-5 gap-4">
+                <p className="text-gray-600 col-span-2 dark:text-gray-300">{tip.tipContent}</p>
+                {/* {hasValidImage && ( */}
+                <div className="col-span-3">
+                  <Media
+                    resource={tip?.image}
+                    fill
+                    imgClassName="object-cover"
+                    className="w-full h-full"
+                    size="(max-width: 768px) 100vw, 60vw"
+                    alt={tip?.tipTitle || 'Travel tip'}
+                    priority
+                  />
+                </div>
+                {/* )} */}
               </CardContent>
             </Card>
           </motion.div>

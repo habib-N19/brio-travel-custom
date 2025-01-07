@@ -1,21 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
-import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
-export const InteractiveTravelPlannerBlock: React.FC<any> = ({ title, description, destinations, travelStyles }) => {
-  const [selectedDestination, setSelectedDestination] = useState('');
-  const [selectedTravelStyle, setSelectedTravelStyle] = useState('');
-  const [budget, setBudget] = useState('');
-  const [duration, setDuration] = useState('');
+export const InteractiveTravelPlannerBlock: React.FC<any> = ({
+  title,
+  description,
+  destinations,
+  travelStyles,
+}) => {
+  const [selectedDestination, setSelectedDestination] = useState('')
+  const [selectedTravelStyle, setSelectedTravelStyle] = useState('')
+  const [budget, setBudget] = useState('')
+  const [duration, setDuration] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Here you would typically send this data to your backend or process it
-    console.log({ selectedDestination, selectedTravelStyle, budget, duration });
+    console.log({ selectedDestination, selectedTravelStyle, budget, duration })
     // For now, we'll just show an alert
-    alert('Thank you for your preferences. Our team will contact you shortly with personalized recommendations.');
-  };
+    alert(
+      'Thank you for your preferences. Our team will contact you shortly with personalized recommendations.',
+    )
+  }
 
   return (
     <div className="container my-16">
@@ -32,7 +40,9 @@ export const InteractiveTravelPlannerBlock: React.FC<any> = ({ title, descriptio
           >
             <option value="">Select a destination</option>
             {destinations.map((dest, index) => (
-              <option key={index} value={dest.name}>{dest.name}</option>
+              <option key={index} value={dest.name}>
+                {dest.name}
+              </option>
             ))}
           </select>
         </div>
@@ -46,7 +56,9 @@ export const InteractiveTravelPlannerBlock: React.FC<any> = ({ title, descriptio
           >
             <option value="">Select a travel style</option>
             {travelStyles.map((style, index) => (
-              <option key={index} value={style.name}>{style.name}</option>
+              <option key={index} value={style.name}>
+                {style.name}
+              </option>
             ))}
           </select>
         </div>
@@ -72,9 +84,10 @@ export const InteractiveTravelPlannerBlock: React.FC<any> = ({ title, descriptio
             required
           />
         </div>
-        <Button type="submit" className="w-full">Get Personalized Recommendations</Button>
+        <Button type="submit" className="w-full">
+          Get Personalized Recommendations
+        </Button>
       </form>
     </div>
-  );
-};
-
+  )
+}

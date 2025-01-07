@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import { cn } from 'src/utilities/cn'
 import * as React from 'react'
 

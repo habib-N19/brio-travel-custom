@@ -19,6 +19,7 @@ export async function POST(
 
   // Authenticate by passing request headers
   const { user } = await payload.auth({ headers: requestHeaders })
+  console.log('user', req)
 
   if (!user) {
     return new Response('Action forbidden.', { status: 403 })

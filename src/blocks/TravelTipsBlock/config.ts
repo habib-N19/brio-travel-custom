@@ -30,8 +30,9 @@ export const TravelTips: Block = {
           required: true,
         },
         {
-          name: 'icon',
-          type: 'text',
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
           required: true,
         },
       ],

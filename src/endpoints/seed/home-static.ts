@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { Page } from '@/payload-types'
 
 // Used for pre-seeded content so that the homepage is not empty

@@ -17,7 +17,7 @@ export const ServicesBlock: React.FC<ServicesBlockProps> = ({
   subheading,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [containerHeight, setContainerHeight] = useState(0)
+  const [, setContainerHeight] = useState(0)
   const [imageLoaded, setImageLoaded] = useState(false)
   const { scrollYProgress } = useScroll({
     target: containerRef,

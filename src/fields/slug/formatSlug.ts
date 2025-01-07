@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { FieldHook } from 'payload'
 
 export const formatSlug = (val: string): string =>

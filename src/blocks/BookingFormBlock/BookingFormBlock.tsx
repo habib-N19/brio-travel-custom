@@ -117,7 +117,9 @@ export const BookingFormBlock: React.FC<BookingFormBlockType> = ({
               className="max-w-2xl mx-auto text-center text-white"
             >
               <h2 className="text-3xl font-bold mb-4">{successMessage}</h2>
-              <p className="text-xl">We'll be in touch with you shortly to confirm your booking.</p>
+              <p className="text-xl">
+                We&apos;ll be in touch with you shortly to confirm your booking.
+              </p>
             </motion.div>
           )}
         </AnimatePresence>

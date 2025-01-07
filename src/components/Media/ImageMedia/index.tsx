@@ -37,6 +37,7 @@ export const ImageMedia: React.FC<MediaProps> = (props) => {
   if (!src && resource && typeof resource === 'object') {
     const {
       alt: altFromResource,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       filename: fullFilename,
       height: fullHeight,
       url,

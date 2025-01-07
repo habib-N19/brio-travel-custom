@@ -10,7 +10,7 @@ import type { IntroductionBlock as IntroductionBlockType } from '@/payload-types
 
 export const IntroductionBlock: React.FC<IntroductionBlockType> = ({
   title,
-  content,
+  richText,
   image,
   ctaText,
   ctaLink,
@@ -25,7 +25,9 @@ export const IntroductionBlock: React.FC<IntroductionBlockType> = ({
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h2>
-          <div className="prose dark:prose-invert mb-8">{/* <RichText content={content} /> */}</div>
+          <div className="prose d ark:prose-invert mb-8">
+            {richText && <RichText data={richText} enableGutter={false} />}
+          </div>
           {ctaText && ctaLink && (
             <Button size="lg" asChild>
               <a href={ctaLink}>{ctaText}</a>
@@ -42,7 +44,7 @@ export const IntroductionBlock: React.FC<IntroductionBlockType> = ({
             resource={image}
             alt={title}
             className="rounded-lg shadow-lg"
-            imgClassName="w-full h-full object-cover rounded-lg"
+            imgClassName="w-full h-1/2   object-cover rounded-lg"
           />
         </motion.div>
       </div>
