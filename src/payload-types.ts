@@ -784,7 +784,7 @@ export interface BentoGridGalleryBlock {
  */
 export interface DiscoverBlock {
   title: string;
-  content: {
+  richText?: {
     root: {
       type: string;
       children: {
@@ -798,7 +798,7 @@ export interface DiscoverBlock {
       version: number;
     };
     [k: string]: unknown;
-  };
+  } | null;
   image: number | Media;
   ctaText: string;
   ctaLink: string;
@@ -1376,7 +1376,7 @@ export interface BentoGridGalleryBlockSelect<T extends boolean = true> {
  */
 export interface DiscoverBlockSelect<T extends boolean = true> {
   title?: T;
-  content?: T;
+  richText?: T;
   image?: T;
   ctaText?: T;
   ctaLink?: T;

@@ -1,6 +1,6 @@
 import { Block } from 'payload'
 
-export const ContactBlock: Block = {
+export const Contact: Block = {
   slug: 'contact',
   interfaceName: 'ContactBlock',
   fields: [

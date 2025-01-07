@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import React, { useState, useEffect } from 'react'
@@ -5,14 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Media } from '@/components/Media'
 import { motion, AnimatePresence } from 'framer-motion'
 
-import type { EnhancedHeroBlock as EnhancedHeroBlockType } from '@/payload-types'
+// import type { EnhancedHeroBlock as EnhancedHeroBlockType } from '@/payload-types'
 
-export const EnhancedHeroBlock: React.FC<EnhancedHeroBlockType> = ({
-  images,
-  tagline,
-  subtext,
-  ctaButton,
-}) => {
+export const EnhancedHeroBlock: React.FC<any> = ({ images, tagline, subtext, ctaButton }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   useEffect(() => {

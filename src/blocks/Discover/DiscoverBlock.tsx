@@ -10,7 +10,7 @@ import type { DiscoverBlock as DiscoverBlockType } from '@/payload-types'
 
 export const DiscoverBlock: React.FC<DiscoverBlockType> = ({
   title,
-  content,
+  richText,
   image,
   ctaText,
   ctaLink,
@@ -26,7 +26,7 @@ export const DiscoverBlock: React.FC<DiscoverBlockType> = ({
         >
           <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">{title}</h2>
           <div className="prose dark:prose-invert mb-8">
-            <RichText content={content} />
+            {richText && <RichText data={richText} />}
           </div>
           <Button size="lg" asChild>
             <a href={ctaLink}>{ctaText}</a>

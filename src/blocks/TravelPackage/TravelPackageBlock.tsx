@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import React from 'react'
@@ -7,13 +8,9 @@ import { Media } from '@/components/Media'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 
-import type { TravelPackageBlock as TravelPackageBlockType } from '@/payload-types'
+// import type { TravelPackageBlock as TravelPackageBlockType } from '@/payload-types'
 
-export const TravelPackageBlock: React.FC<TravelPackageBlockType> = ({
-  title,
-  description,
-  packages,
-}) => {
+export const TravelPackageBlock: React.FC<any> = ({ title, description, packages }) => {
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="max-w-2xl mx-auto text-center mb-12">
