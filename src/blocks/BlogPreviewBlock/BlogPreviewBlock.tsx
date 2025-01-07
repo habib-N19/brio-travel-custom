@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 
 import React from 'react'
@@ -27,7 +28,7 @@ export const BlogPreviewBlock: React.FC<BlogPreviewType> = ({
           if (typeof post === 'string') return null
           return (
             <Card key={index} className="group overflow-hidden bg-white dark:bg-gray-800">
-              {post.featuredImage && (
+              {/* {post.featuredImage && (
                 <div className="relative h-64 overflow-hidden">
                   <Media
                     resource={post.featuredImage}
@@ -35,18 +36,18 @@ export const BlogPreviewBlock: React.FC<BlogPreviewType> = ({
                     className="w-full h-full"
                     imgClassName="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                </div>
-              )}
+                </div> 
+              )} */}
               <CardHeader>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{post.title}</h3>
+                {/* <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{post.title}</h3> */}
               </CardHeader>
-              <CardContent>{post.excerpt && <RichText data={post.excerpt} />}</CardContent>
+              {/* <CardContent>{post.excerpt && <RichText data={post.excerpt} />}</CardContent> */}
               <CardFooter>
                 <Button variant="ghost" className="group" asChild>
-                  <a href={`/blog/${post.slug}`}>
+                  {/* <a href={`/blog/${post.slug}`}>
                     Read More
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
+                  </a> */}
                 </Button>
               </CardFooter>
             </Card>
