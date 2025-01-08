@@ -63,7 +63,7 @@ export const HighImpactHero: React.FC<Page['hero']> = ({ links, media, richText 
 
   return (
     <div
-      className="relative -mt-[10.4rem] flex items-center justify-center text-white overflow-hidden"
+      className="relative  -mt-[10.4rem] flex items-center justify-center overflow-hidden"
       data-theme="dark"
     >
       <motion.div
